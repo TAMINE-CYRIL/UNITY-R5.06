@@ -8,16 +8,17 @@ public class PlayerMovement : MonoBehaviour
     public float sensibiliteSouris = 2f;
     public Transform camera;
 
+    private AudioSource audioSource;
     private CharacterController controller;
     private float rotationVerticale = 0f;
     private Vector3 velocite;
     private bool estAuSol;
-
     void Start()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && estAuSol)
         {
             velocite.y = Mathf.Sqrt(hauteurSaut * -2f * gravite);
+            audioSource.Play();
         }
 
         // Gravité
