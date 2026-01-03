@@ -2096,7 +2096,7 @@ GameObject:
   - component: {fileID: 269159377}
   - component: {fileID: 269159376}
   m_Layer: 0
-  m_Name: Vie en nombre sur max
+  m_Name: Health_Text_Max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11276,6 +11276,8 @@ GameObject:
   - component: {fileID: 1197252857}
   - component: {fileID: 1197252858}
   - component: {fileID: 1197252859}
+  - component: {fileID: 1197252860}
+  - component: {fileID: 1197252861}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11406,7 +11408,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   healthBarFill: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!82 &1197252858
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11515,6 +11519,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb9a2bcd80f011488570702c739124e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1197252860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197252850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442c85017542cf84e8ff76494b64a2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1592987380}
+--- !u!114 &1197252861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197252850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3517fedc6e8847047a4cdd420e1a9981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeDamage: 25
+  meleeRange: 2
+  meleeCooldown: 0.5
+  gunDamage: 15
+  gunRange: 50
+  camera: {fileID: 330585546}
 --- !u!4 &1198682228 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2464564332631738728, guid: 46b951c178938ff469e5550fbc61efa0,
@@ -13514,7 +13549,7 @@ GameObject:
   - component: {fileID: 1456020350}
   - component: {fileID: 1456020349}
   m_Layer: 0
-  m_Name: Texte Vie
+  m_Name: Health_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14291,9 +14326,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 659961705}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.43999982, y: 2.0899997}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.328, y: 2.245}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.05, y: 0.94}
 --- !u!114 &1497532126
@@ -14878,7 +14913,7 @@ GameObject:
   - component: {fileID: 1592987381}
   - component: {fileID: 1592987380}
   m_Layer: 0
-  m_Name: Nombre score
+  m_Name: Score_Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15998,6 +16033,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e552ca37712d34f9079086c6fe8b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1689662108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8bac2fb373348d541a23edba5e058963,
@@ -18104,7 +18141,7 @@ GameObject:
   - component: {fileID: 1951954194}
   - component: {fileID: 1951954193}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Casali Texte exterieur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18363,10 +18400,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 87225637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 20}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1972239154
 MonoBehaviour:

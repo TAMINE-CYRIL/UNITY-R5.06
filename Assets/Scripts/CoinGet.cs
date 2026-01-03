@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class KillableX : MonoBehaviour
+public class CoinGet : MonoBehaviour
 {
     private AudioSource audioSource;
 
@@ -11,10 +9,13 @@ public class KillableX : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // M�thode publique pour "tuer" l'objet
-    public void Kill()
+    // Méthode pour "tuer" l'objet
+    public void Kill(Transform collector)
     {
-        Debug.Log(name + " est mort");
+        Debug.Log(name + " est récolté");
+
+        PlayerScore playerScore = collector.GetComponent<PlayerScore>();
+        playerScore.AddScore(1); // Ajoute 1 point au score du joueur
 
         GameObject temp = new GameObject("TempAudio");
         AudioSource tempS = temp.AddComponent<AudioSource>();

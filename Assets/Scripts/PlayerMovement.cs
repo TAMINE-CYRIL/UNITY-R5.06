@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float vitesseDeplacement = 5f;
     public float hauteurSaut = 2f;
-    public float gravite = -9.81f; // Valeur physique réaliste -9.81f
+    public float gravite = -9.81f; // Valeur physique rÃ©aliste -9.81f
     public float sensibiliteSouris = 2f;
     public Transform camera;
 
@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private float rotationVerticale = 0f;
     private Vector3 velocite;
     private bool estAuSol;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Vérifie si le joueur touche le sol
+        // VÃ©rifie si le joueur touche le sol
         estAuSol = controller.isGrounded;
 
         if (estAuSol && velocite.y < 0)
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             velocite.y = -2f; // colle le joueur au sol
         }
 
-        // Déplacement horizontal (ZQSD)
+        // DÃ©placement horizontal (ZQSD)
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             audioSource.Play();
         }
 
-        // Gravité
+        // GravitÃ©
         velocite.y += gravite * Time.deltaTime;
 
         // Combine horizontal + vertical

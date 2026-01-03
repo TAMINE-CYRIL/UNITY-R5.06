@@ -10,21 +10,7 @@ public class EnemyChaserNav : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
-        // On cherche le joueur s'il n'est pas assigné
-        if (target == null)
-        {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                target = playerObj.transform;
-                Debug.Log("EnemyChaserNav : target = " + target.name);
-            }
-            else
-            {
-                Debug.LogError("EnemyChaserNav : aucun objet avec le tag Player trouvé !");
-            }
-        }
+        target = GameObject.FindWithTag("Player").transform;
     }
 
     void Update()
