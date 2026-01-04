@@ -11208,7 +11208,7 @@ PrefabInstance:
     - target: {fileID: 836851982171945196, guid: f84000a2d0cbb714f99c8e1bccd4d5b7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.599
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 836851982171945196, guid: f84000a2d0cbb714f99c8e1bccd4d5b7,
         type: 3}
@@ -11327,6 +11327,10 @@ MonoBehaviour:
   hauteurSaut: 1
   gravite: -20
   sensibiliteSouris: 1.5
+  vitesseMonteeEscalier: 3
+  ajustementDetectionEscalierf: 0.3
+  ajustementDetectionApresEscalierf: 0.7
+  ajustementLoinEscalier: 1
   camera: {fileID: 330585546}
 --- !u!23 &1197252854
 MeshRenderer:
@@ -11387,7 +11391,7 @@ Transform:
   m_GameObject: {fileID: 1197252850}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.99999964, z: -0, w: 0.0009296136}
-  m_LocalPosition: {x: 0.33529446, y: 1.61, z: -7.5779653}
+  m_LocalPosition: {x: 0.33529446, y: 1.44, z: -7.5779653}
   m_LocalScale: {x: 0.7, y: 0.875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16033,8 +16037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e552ca37712d34f9079086c6fe8b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  player: {fileID: 0}
 --- !u!4 &1689662108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8bac2fb373348d541a23edba5e058963,
@@ -16320,7 +16322,7 @@ PrefabInstance:
     - target: {fileID: 836851982171945196, guid: f84000a2d0cbb714f99c8e1bccd4d5b7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.55
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 836851982171945196, guid: f84000a2d0cbb714f99c8e1bccd4d5b7,
         type: 3}
@@ -20461,7 +20463,7 @@ PrefabInstance:
     - target: {fileID: 836851982171945196, guid: f84000a2d0cbb714f99c8e1bccd4d5b7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.585
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 836851982171945196, guid: f84000a2d0cbb714f99c8e1bccd4d5b7,
         type: 3}
