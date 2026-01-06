@@ -5,6 +5,7 @@ public class DeathZone : MonoBehaviour
 {
     public AudioClip deathSound; 
     public float volume = 1f;
+    public GameOverMenu gameOverMenu;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,17 +15,9 @@ public class DeathZone : MonoBehaviour
             if (deathSound != null)
             {
                 AudioSource.PlayClipAtPoint(deathSound, transform.position, volume);
-                Invoke(nameof(ReloadScene), deathSound.length);
+                Invoke(nameof(gameOverMenu.ShowGameOver), deathSound.length);
             }
-            else
-            {
-                ReloadScene();
-            }
+            else gameOverMenu.ShowGameOver();
         }
-    }
-
-    void ReloadScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
