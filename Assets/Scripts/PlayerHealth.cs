@@ -55,20 +55,7 @@ public class PlayerHealth : MonoBehaviour
         isDead = true;
         Debug.Log("PLAYER MORT");
 
-        // Affichage Game Over
-        if (gameOverMenu != null)
-            gameOverMenu.ShowGameOver();
-
-        // Bloquer le joueur (sans tout désactiver)
-        DisablePlayerControls();
-    }
-
-    void DisablePlayerControls()
-    {
-        // Exemple : bloquer le CharacterController
-        var controller = GetComponent<CharacterController>();
-        if (controller != null)
-            controller.enabled = false;
+        gameOverMenu.ShowGameOver();
     }
 
     void UpdateUI()

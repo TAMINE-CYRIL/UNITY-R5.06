@@ -3,7 +3,8 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel;
-    public MonoBehaviour playerLook; 
+    public PlayerMovement playerMovement;
+    public PlayerCombat playerCombat;
 
     private bool isPaused = false;
 
@@ -16,10 +17,8 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
-                ResumeGame();
-            else
-                PauseGame();
+            if (isPaused) ResumeGame();
+            else PauseGame();
         }
     }
 
@@ -29,8 +28,8 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
 
-        if (playerLook != null)
-            playerLook.enabled = false;
+        playerMovement.enabled = false;
+        playerCombat.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -42,16 +41,10 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
 
-        if (playerLook != null)
-            playerLook.enabled = true;
+        playerMovement.enabled = true;
+        playerCombat.enabled = true;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-        Debug.Log("Quitter le jeu");
     }
 }
