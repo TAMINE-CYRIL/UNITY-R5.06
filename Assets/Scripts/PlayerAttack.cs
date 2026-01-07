@@ -8,7 +8,7 @@ public class PlayerCombat : MonoBehaviour
 
     public int gunDamage = 15;
     public float gunRange = 50f;
-    public Transform camera;
+    public new Transform camera;
     private Camera fpsCamera;
 
     private float lastMeleeTime = 0f;
@@ -16,22 +16,6 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         fpsCamera = camera.GetComponent<Camera>();
-    }
-
-    void Update()
-    {
-        // Tir au clic gauche
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
-
-        // Attaque à l'épée au clic droit
-        if (Input.GetButtonDown("Fire2") && Time.time >= lastMeleeTime + meleeCooldown)
-        {
-            MeleeAttack();
-            lastMeleeTime = Time.time;
-        }
     }
 
     void Shoot()
@@ -50,6 +34,8 @@ public class PlayerCombat : MonoBehaviour
 
     void MeleeAttack()
     {
+        if(Time.time < lastMeleeTime + meleeCooldown) return;
+        lastMeleeTime = Time.time;
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, meleeRange))
         {

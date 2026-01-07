@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float ajustementDetectionEscalierf = 0.3f;
     public float ajustementDetectionApresEscalierf = 0.7f;
     public float ajustementLoinEscalier = 1f;
-    public Transform camera;
+    public new Transform camera;
 
     private AudioSource audioSource;
     private CharacterController controller;
