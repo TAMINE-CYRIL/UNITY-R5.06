@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        // 🔒 Sécurité : pas de dégâts si déjà mort
+        // Sécurité : pas de dégâts si déjà mort
         if (isDead) return;
 
         currentHealth -= amount;
@@ -50,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        if (isDead) return; // double sécurité
+        if (isDead) return;
 
         isDead = true;
         Debug.Log("PLAYER MORT");
