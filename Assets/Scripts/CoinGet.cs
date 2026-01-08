@@ -15,7 +15,7 @@ public class CoinGet : MonoBehaviour
         Debug.Log(name + " est récolté");
 
         PlayerScore playerScore = collector.GetComponent<PlayerScore>();
-        playerScore.AddScore(1); // Ajoute 1 point au score du joueur
+        playerScore.AddScore(10); // Ajoute 1 point au score du joueur
 
         GameObject temp = new GameObject("TempAudio");
         AudioSource tempS = temp.AddComponent<AudioSource>();
