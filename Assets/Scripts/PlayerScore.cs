@@ -9,7 +9,7 @@ public class PlayerScore : MonoBehaviour
 
     void Start()
     {
-        score = 0;
+        score = 0; // On définit à 0 par défaut
         UpdateUI();
     }
 
@@ -21,8 +21,15 @@ public class PlayerScore : MonoBehaviour
         UpdateUI();
     }
 
+    // Met à jour l'UI du score
     void UpdateUI()
     {
         scoreText.text = "Score : " + score;
+    }
+   
+    // Renvoie le score
+    public float getScore()
+    {
+        return score;
     }
 }
