@@ -197,18 +197,13 @@ public class PlayerInventory : MonoBehaviour
         {
             Slot slot = items[i];
             Image img = invImages[i];
-            if (!slot.IsEmpty())
-            {
-                img.sprite = slot.item.icon;
-                img.color = (i == selectedSlot) ? Color.yellow : Color.white;
-            }
+            if (!slot.IsEmpty()) img.sprite = slot.item.icon;
+            else img.sprite = null;
             if(i == selectedSlot)
             {
                 img.color = Color.yellow;
-                selectedInv.text = slot.item != null ? slot.item.itemName + " x" + slot.quantity : "Vide";
-            } else {
-                img.color = Color.white;
-            }
+                selectedInv.text = slot.item != null ? slot.item.itemName + " (x" + slot.quantity + ")" : "Vide";
+            } else img.color = Color.white;
         }
     }
 }

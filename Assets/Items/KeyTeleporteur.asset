@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f342e9dc813dc048a918ce3dbaf5408, type: 3}
   m_Name: KeyTeleporteur
   m_EditorClassIdentifier: 
-  itemName: "Cl\xE9 Rouge"
-  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemName: "Cl\xE9 T\xE9l\xE9porteur"
+  icon: {fileID: 21300000, guid: 5930bf314ed008146913449b56299ee6, type: 3}
   itemType: 0
   maxStack: 1
-  ID: 0
-  keyId: Red
+  ID: 1
+  keyId: Transport

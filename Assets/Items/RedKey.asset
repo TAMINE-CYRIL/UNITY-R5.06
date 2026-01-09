@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f342e9dc813dc048a918ce3dbaf5408, type: 3}
   m_Name: RedKey
   m_EditorClassIdentifier: 
-  itemName: 
-  icon: {fileID: 0}
+  itemName: "Cl\xE9 Rouge"
+  icon: {fileID: 21300000, guid: d5479c0d2c6238544876c1846f6473d9, type: 3}
   itemType: 0
-  maxStack: 5
-  ID: 0
-  keyId: 
+  maxStack: 1
+  ID: 2
+  keyId: Red

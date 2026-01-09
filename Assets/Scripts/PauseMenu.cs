@@ -31,7 +31,7 @@ public class PauseMenu : MonoBehaviour
 
     private bool IsAnyBlockingMenuActive()
     {
-        if (startMenu != null && startMenu.gameObject.activeInHierarchy)
+        if (startMenu != null && startMenu.startMenuPanel.activeSelf)
             return true;
 
         if (gameOverMenu != null && gameOverMenu.gameOverPanel.activeSelf)

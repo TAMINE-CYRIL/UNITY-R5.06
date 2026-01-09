@@ -18,8 +18,8 @@ public class Key : Item
                 Object lockable = hit.transform.GetComponent<Object>();
                 if (lockable != null)
                 {
-                    //if (lockable.Unlock(this)) Debug.Log($"Déverrouillage réussi de {hit.transform.name} avec la clé {itemName}");
-                    //else Debug.Log($"La clé {itemName} ne correspond pas à {hit.transform.name}");
+                    var unlockMethod = lockable.GetType().GetMethod("Unlock");
+                    if (unlockMethod != null) unlockMethod.Invoke(lockable, new object[] { user });
                 }
             }
         }
