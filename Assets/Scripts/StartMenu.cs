@@ -7,45 +7,48 @@ public class StartMenu : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerAttack playerAttack;
 
-    private void Start()
+    void Start()
     {
-        ShowStartMenu();
-    }
-
-    public void GoBackToMainMenu()
-    {
-        SceneManager.LoadScene("SampleScene");
         ShowStartMenu();
     }
 
     public void ShowStartMenu()
     {
+        DisableGameplay();
+
         startMenuPanel.SetActive(true);
         Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        playerMovement.enabled = false;
-        playerAttack.enabled = false;
     }
 
     public void PlayGame()
     {
-        // Reprendre le jeu
         startMenuPanel.SetActive(false);
-        Time.timeScale = 1f;
 
+        EnableGameplay();
+
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        playerMovement.enabled = true;
-        playerAttack.enabled = true;
     }
 
     public void QuitGame()
     {
         Application.Quit();
         Debug.Log("Quitter le jeu");
+    }
+
+    private void DisableGameplay()
+    {
+        if (playerMovement != null) playerMovement.enabled = false;
+        if (playerAttack != null) playerAttack.enabled = false;
+    }
+
+    private void EnableGameplay()
+    {
+        if (playerMovement != null) playerMovement.enabled = true;
+        if (playerAttack != null) playerAttack.enabled = true;
     }
 }

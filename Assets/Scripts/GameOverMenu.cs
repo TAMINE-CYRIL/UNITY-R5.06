@@ -6,9 +6,8 @@ public class GameOverMenu : MonoBehaviour
     public GameObject gameOverPanel;
     public PlayerMovement playerMovement;
     public PlayerAttack playerAttack;
-    public StartMenu startMenu;
 
-    private void Start()
+    void Start()
     {
         gameOverPanel.SetActive(false);
     }
@@ -18,24 +17,27 @@ public class GameOverMenu : MonoBehaviour
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
 
-        playerMovement.enabled = false;
-        playerAttack.enabled = false;
+        DisableGameplay();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    public void Reset()
+    public void RestartGame()
     {
         Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
-        playerMovement.enabled = true;
-        playerAttack.enabled = true;
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quitter le jeu");
+    }
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        SceneManager.LoadScene("SampleScene");
-        startMenu.PlayGame();
-    } 
+    private void DisableGameplay()
+    {
+        if (playerMovement != null) playerMovement.enabled = false;
+        if (playerAttack != null) playerAttack.enabled = false;
+    }
 }

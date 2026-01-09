@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float vitesseDeplacement = 5f;
     public float hauteurSaut = 2f;
-    public float gravite = -9.81f; // Valeur physique réaliste -9.81f
+    public float gravite = -9.81f;
     public float sensibiliteSouris = 2f;
     public float vitesseMonteeEscalier = 3f;
     public float ajustementDetectionEscalierf = 0.3f;
@@ -13,11 +13,17 @@ public class PlayerMovement : MonoBehaviour
     public float ajustementLoinEscalier = 1f;
     public new Transform camera;
 
+    [Header("Système de Particules")]
+    public ParticleSystem particulesMarche; // Particules lors de la marche
+    public float seuilVitesseParticules = 0.1f; // Vitesse minimale pour déclencher les particules
+
     private AudioSource audioSource;
     private CharacterController controller;
     private float rotationVerticale = 0f;
     private Vector3 velocite;
     private bool estAuSol;
+    private bool etaitAuSolPrecedent = false; // Pour détecter l'atterrissage
+    private Vector3 dernierePosition;
 
     void Start()
     {
@@ -25,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         audioSource = GetComponent<AudioSource>();
+        dernierePosition = transform.position;
     }
 
     void Update()
@@ -32,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         // Vérifie si le joueur touche le sol
         estAuSol = controller.isGrounded;
 
-        if (estAuSol && velocite.y < 0) velocite.y = -2f; // colle le joueur au sol
+        if (estAuSol && velocite.y < 0) velocite.y = -2f;
 
         // Déplacement horizontal (ZQSD)
         float x = Input.GetAxis("Horizontal");
@@ -48,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
             audioSource.Play();
         }
 
+
         // Gravité
         velocite.y += gravite * Time.deltaTime;
 
@@ -56,19 +64,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 vectorPied = transform.position + Vector3.down * ((controller.height / 2) - ajustementDetectionEscalierf);
             Vector3 vectorMilieu = transform.position + Vector3.down * ((controller.height / 2) - ajustementDetectionApresEscalierf);
-            Debug.DrawRay(vectorPied, transform.forward * ajustementLoinEscalier, Color.red); // Ray au pied
-            Debug.DrawRay(vectorMilieu, transform.forward * ajustementLoinEscalier, Color.blue); // Ray milieu
-            if (Physics.Raycast(vectorPied, transform.forward, out RaycastHit hit, ajustementLoinEscalier) // Detecte obstacle au pied (escalier etc)
-                && !Physics.Raycast(vectorMilieu, transform.forward, ajustementLoinEscalier)) // Verifie si c'est pas juste un mur
+            Debug.DrawRay(vectorPied, transform.forward * ajustementLoinEscalier, Color.red);
+            Debug.DrawRay(vectorMilieu, transform.forward * ajustementLoinEscalier, Color.blue);
+            if (Physics.Raycast(vectorPied, transform.forward, out RaycastHit hit, ajustementLoinEscalier)
+                && !Physics.Raycast(vectorMilieu, transform.forward, ajustementLoinEscalier))
             {
-                Debug.DrawRay(hit.point, Vector3.up * vitesseMonteeEscalier * Time.deltaTime, Color.green); // Ray de montée
-                if (velocite.y < vitesseMonteeEscalier) velocite.y = vitesseMonteeEscalier; // Préserver le saut si plus grand
+                Debug.DrawRay(hit.point, Vector3.up * vitesseMonteeEscalier * Time.deltaTime, Color.green);
+                if (velocite.y < vitesseMonteeEscalier) velocite.y = vitesseMonteeEscalier;
             }
         }
 
         // Combine horizontal + vertical
         Vector3 mouvementTotal = (mouvement + velocite) * Time.deltaTime;
         controller.Move(mouvementTotal);
+
+        // Gestion des particules de marche
+        GererParticulesMarche();
 
         // Rotation souris
         float sourisX = Input.GetAxis("Mouse X") * sensibiliteSouris;
@@ -79,5 +90,35 @@ public class PlayerMovement : MonoBehaviour
         rotationVerticale -= sourisY;
         rotationVerticale = Mathf.Clamp(rotationVerticale, -90f, 90f);
         camera.localEulerAngles = new Vector3(rotationVerticale, 0f, 0f);
+
+        // Mettre à jour l'état précédent
+        etaitAuSolPrecedent = estAuSol;
+        dernierePosition = transform.position;
+    }
+
+    void GererParticulesMarche()
+    {
+        if (particulesMarche == null) return;
+
+        // Calculer la vitesse horizontale du joueur
+        Vector3 vitesseHorizontale = (transform.position - dernierePosition) / Time.deltaTime;
+        vitesseHorizontale.y = 0; // Ignorer le mouvement vertical
+        float vitesse = vitesseHorizontale.magnitude;
+
+        // Activer/désactiver les particules selon le mouvement
+        if (estAuSol && vitesse > seuilVitesseParticules)
+        {
+            if (!particulesMarche.isPlaying)
+            {
+                particulesMarche.Play();
+            }
+        }
+        else
+        {
+            if (particulesMarche.isPlaying)
+            {
+                particulesMarche.Stop();
+            }
+        }
     }
 }

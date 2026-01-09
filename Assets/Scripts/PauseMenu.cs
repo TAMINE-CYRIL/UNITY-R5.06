@@ -6,20 +6,41 @@ public class PauseMenu : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerAttack playerAttack;
 
+    public GameOverMenu gameOverMenu;
+    public WinMenu winMenu;
+    public StartMenu startMenu;
+
     private bool isPaused = false;
 
-    private void Start()
+    void Start()
     {
         pausePanel.SetActive(false);
     }
 
-    private void Update()
+    void Update()
     {
+        if (IsAnyBlockingMenuActive())
+            return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused) ResumeGame();
             else PauseGame();
         }
+    }
+
+    private bool IsAnyBlockingMenuActive()
+    {
+        if (startMenu != null && startMenu.gameObject.activeInHierarchy)
+            return true;
+
+        if (gameOverMenu != null && gameOverMenu.gameOverPanel.activeSelf)
+            return true;
+
+        if (winMenu != null && winMenu.victoryPanel.activeSelf)
+            return true;
+
+        return false;
     }
 
     public void PauseGame()
@@ -28,8 +49,7 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(true);
         Time.timeScale = 0f;
 
-        playerMovement.enabled = false;
-        playerAttack.enabled = false;
+        DisableGameplay();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -41,10 +61,21 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
 
-        playerMovement.enabled = true;
-        playerAttack.enabled = true;
+        EnableGameplay();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    private void DisableGameplay()
+    {
+        if (playerMovement != null) playerMovement.enabled = false;
+        if (playerAttack != null) playerAttack.enabled = false;
+    }
+
+    private void EnableGameplay()
+    {
+        if (playerMovement != null) playerMovement.enabled = true;
+        if (playerAttack != null) playerAttack.enabled = true;
     }
 }
