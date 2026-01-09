@@ -5,7 +5,7 @@ public class StartMenu : MonoBehaviour
 {
     public GameObject startMenuPanel;
     public PlayerMovement playerMovement;
-    public PlayerCombat playerCombat;
+    public PlayerAttack playerAttack;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class StartMenu : MonoBehaviour
         Cursor.visible = true;
 
         playerMovement.enabled = false;
-        playerCombat.enabled = false;
+        playerAttack.enabled = false;
     }
 
     public void PlayGame()
@@ -40,7 +40,7 @@ public class StartMenu : MonoBehaviour
         Cursor.visible = false;
 
         playerMovement.enabled = true;
-        playerCombat.enabled = true;
+        playerAttack.enabled = true;
     }
 
     public void QuitGame()

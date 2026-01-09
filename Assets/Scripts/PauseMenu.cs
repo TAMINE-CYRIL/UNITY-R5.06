@@ -4,7 +4,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel;
     public PlayerMovement playerMovement;
-    public PlayerCombat playerCombat;
+    public PlayerAttack playerAttack;
 
     private bool isPaused = false;
 
@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
 
         playerMovement.enabled = false;
-        playerCombat.enabled = false;
+        playerAttack.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -42,7 +42,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         playerMovement.enabled = true;
-        playerCombat.enabled = true;
+        playerAttack.enabled = true;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

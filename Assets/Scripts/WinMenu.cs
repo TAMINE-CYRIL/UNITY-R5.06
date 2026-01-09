@@ -7,7 +7,7 @@ public class WinMenu : MonoBehaviour
     public GameObject victoryPanel;
 
     public PlayerMovement playerMovement;
-    public PlayerCombat playerCombat;
+    public PlayerAttack playerAttack;
     public PlayerScore playerScore;
 
     public TextMeshProUGUI victoryScoreText;
@@ -25,7 +25,7 @@ public class WinMenu : MonoBehaviour
         Time.timeScale = 0f;
 
         playerMovement.enabled = false;
-        playerCombat.enabled = false;
+        playerAttack.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
